@@ -2,6 +2,14 @@ import sendMail from "../config/Mail.js"
 import genToken from "../config/token.js"
 import User from "../models/user.model.js"
 import bcrypt from "bcryptjs"
+
+const isProduction = process.env.NODE_ENV === "production"
+const cookieOptions = {
+    httpOnly: true,
+    maxAge: 10 * 365 * 24 * 60 * 60 * 1000,
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "strict"
+}
 export const signUp=async (req,res)=>{
     try {
         const {name,email,password,userName}=req.body
@@ -29,12 +37,7 @@ export const signUp=async (req,res)=>{
 
         const token=await genToken(user._id)
 
-        res.cookie("token",token,{
-            httpOnly:true,
-            maxAge:10*365*24*60*60*1000,
-            secure:false,
-            sameSite:"Strict"
-        })
+        res.cookie("token", token, cookieOptions)
 
         return res.status(201).json(user)
 
@@ -60,12 +63,7 @@ export const signIn=async (req,res)=>{
 
         const token=await genToken(user._id)
 
-        res.cookie("token",token,{
-            httpOnly:true,
-            maxAge:10*365*24*60*60*1000,
-            secure:false,
-            sameSite:"Strict"
-        })
+        res.cookie("token", token, cookieOptions)
 
         return res.status(200).json(user)
 
