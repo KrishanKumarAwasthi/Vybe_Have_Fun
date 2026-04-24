@@ -4,7 +4,13 @@ A modern, full-stack social media application built with React, Node.js, Express
 
 ![VIBE Home](./docs/home-screen.png)
 
-## 🎯 Overview
+## � Live Demo
+
+**Try VIBE now:** [https://vybe-have-fun.vercel.app/](https://vybe-have-fun.vercel.app/)
+
+---
+
+## �🎯 Overview
 
 VIBE is a feature-rich social platform that combines the best elements of modern social networks. Users can share posts and reels, create stories, message friends in real-time, and engage through likes, comments, and follows. The platform uses WebSocket technology for instant messaging and online user tracking.
 
